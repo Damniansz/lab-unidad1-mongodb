@@ -10,7 +10,7 @@
 
 #  Diagrama Entidad-Relacion (DER)
 Se compone de 5 entidades:
-![Diagrama Entidad-Relacion TechStore](/images/DER.drawio.png)
+![Diagrama Entidad-Relacion TechStore](images/DER.drawio.png)
 
 **Categorías**  
    Tipos generales de productos disponibles en el inventario, como las laptops, smartphones y monitores, agrupa los productos bajo una misma clasificación. Una categoría puede contener muchos productos, pero cada producto pertenece solo a una categoría `(1:N)`.
@@ -151,31 +151,31 @@ db.productos.insertMany([
 ]);
 ```
 #### Verificación de insercion
-![Inserción de productos](/images/Inserccion%20Datos/insertMany.png)
-![Verificación de inserción de productos en compass](/images/Inserccion%20Datos/insertManyCompass.png)
+![Inserción de productos](images/Inserccion%20Datos/insertMany.png)
+![Verificación de inserción de productos en compass](images/Inserccion%20Datos/insertManyCompass.png)
 
 ## Lectura de datos (READ)
 
 ### Consulta 1: Mostrar todos los productos en la colección. (find())
 Retorna todos los documentos de la colección `productos` sin filtros.
 
-![Consulta 1: Mostrar todos los productos en la colección](/images/Consultas/Consulta1.png)
+![Consulta 1: Mostrar todos los productos en la colección](images/Consultas/Consulta1.png)
 ### Consulta 2: Mostrar solo los productos que sean de tipo "Laptop".
 Filtra documentos donde el campo `tipo` es exactamente "Laptop".
 
-![Consulta 2: Mostrar solo los productos que sean de tipo "Laptop"](/images/Consultas/Consulta2.png)
+![Consulta 2: Mostrar solo los productos que sean de tipo "Laptop"](images/Consultas/Consulta2.png)
 ### Consulta 3: Mostrar los productos que tengan más de 10 unidades en stock Y un precio menor a 1000.
 Consulta compuesta con operadores lógicos:
 - `$gt`: Greater than (mayor que)
 - `$lt`: Less than (menor que)
 
-![Consulta 3: Mostrar los productos que tengan más de 10 unidades en stock Y un precio menor a 1000](/images/Consultas/Consulta3.png)
+![Consulta 3: Mostrar los productos que tengan más de 10 unidades en stock Y un precio menor a 1000](images/Consultas/Consulta3.png)
 ### Consulta 4: Mostrar solo el nombre, precio y stock de los "Smartphone" (Proyección).
 Proyección que limita los campos retornados:
 - `0`: Excluir campo
 - `1`: Incluir campo
 
-![Consulta 4: Mostrar solo el nombre, precio y stock de los "Smartphone"](/images/Consultas/Consulta4.png)
+![Consulta 4: Mostrar solo el nombre, precio y stock de los "Smartphone"](images/Consultas/Consulta4.png)
 
 ## Actualizacion de datos (UPDATE)
 
@@ -185,16 +185,16 @@ Proyección que limita los campos retornados:
 - Valores negativos decrementan
 - Operación thread-safe
 
-![Operacion 1: Se vendió un Smartphone](/images/Operaciones/Operacion1.png)
-![Verificacion Compass](/images/Operaciones/Operacion1.2.png)
+![Operacion 1: Se vendió un Smartphone](images/Operaciones/Operacion1.png)
+![Verificacion Compass](images/Operaciones/Operacion1.2.png)
 ### Operacion 2: El precio de la Laptop ha subido. Actualice su precio a un nuevo valor y añada un nuevo campo ultima_revision: new Date(). (Use $set).
 **Operador `$set`:**
 - Actualiza campos existentes
 - **Crea nuevos campos** si no existen
 - Permite agregar campos dinámicamente
 
-![Operacion 2: El precio de la Laptop ha subido](/images/Operaciones/Operacion2.png)
-![Verificacion Compass](/images/Operaciones/Operacion2.2.png)
+![Operacion 2: El precio de la Laptop ha subido](images/Operaciones/Operacion2.png)
+![Verificacion Compass](images/Operaciones/Operacion2.2.png)
 
 ## Analisis Reflexivo
 
