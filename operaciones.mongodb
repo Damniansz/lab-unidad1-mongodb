@@ -1,0 +1,89 @@
+// Conectar a la base de datos techstore
+use('techstore');
+// Limpieeza inicial para pruebas
+db.productos.drop();
+// Insertar datos a 3 prodcutos 
+db.productos.insertMany([
+    {
+    nombre: "Samsung A50",
+    sku: "SM-001",
+    precio: 250,
+    stock: 5,
+    fecha_creacion: new Date("2025-10-28"),
+    id_categoria: 1,
+    tipo: "Smartphone",
+    especificaciones: {
+      pantalla: "6.8 pulgadas AMOLED",
+      ram_gb: 4,
+      almacenamiento_gb: 128,
+      hz: 60
+    }
+  },
+  {
+    nombre: "Dell XPS 15 9530",
+    sku: "LPTP-DXPS15-512-SLV",
+    precio: 1899.99,
+    stock: 8,
+    fecha_creacion: new Date("2024-02-20"),
+    id_categoria: 2,
+    tipo: "Laptop",
+    especificaciones: {
+      cpu: "Intel Core i7-13700H",
+      ram_gb: 16,
+      peso_kg: 1.86,
+      ancho_cm: 34.4,
+      alto_cm: 23.0
+
+  }
+},
+{
+    nombre: "LG UltraGear 27GN950",
+    sku: "MNTR-LG27-4K-144",
+    precio: 799.99,
+    stock: 12,
+    fecha_creacion: new Date("2024-03-10"),
+    id_categoria: 3,
+    tipo: "Monitor",
+    especificaciones: {
+
+      resolucion: "3840x2160 (4K)",
+      tamano_pulgadas: 27,
+      hz: 144  
+    }
+}
+  
+]);
+// Consulta 1: todos los productos
+use('techstore');
+db.productos.find();
+
+//Consulta 2: Mostrar solo los productos que sean de tipo "Laptop".
+use('techstore');
+db.productos.find({ tipo: "Laptop" });
+
+//Consulta 3: Mostrar los productos que tengan más de 10 unidades en stock Y un precio menor a 1000.
+use('techstore');
+db.productos.find({ stock: { $gt: 10 }, precio: { $lt: 1000 } });
+
+//Consulta 4: Mostrar solo el nombre, precio y stock de los "Smartphone" (Proyección)
+use('techstore');
+db.productos.find({ tipo: "Smartphone" }, { nombre: 1, precio: 1, stock: 1 });
+
+//Actulizar 
+//Operación 1: Se vendió un Smartphone (busque uno por su sku). Reduzca su stock en 1 unidad. (Use $inc)
+use('techstore');
+db.productos.updateOne(
+  { sku: "SM-001" },
+  { $inc: { stock: -1 } }
+);
+// Operación 2: El precio de la Laptop ha subido. Actualice su precio a un nuevo valor y añada un nuevo campo ultima_revision: new Date(). (Use $set)
+use('techstore');
+db.productos.updateOne(
+    { sku: "LPTP-DXPS15-512-SLV" },
+  { 
+    $set: { 
+      precio: 2099.99,
+      ultima_revision: new Date()
+    }
+  }
+);
